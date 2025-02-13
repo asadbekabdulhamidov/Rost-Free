@@ -173,13 +173,26 @@ function Navbar() {
             </span>
             <a href="tel:+998 90 277 43 52">+998 90 277 43 52</a>
           </div>
-          <div className="px-5 sm:flex sm:items-center">
-            <FaSearch className="h-8 w-8 text-borderColor" />
+          <div className="cursor-pointer items-center px-5 sm:flex">
+            <svg
+              width="20"
+              height="20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m17.5 17.5-3.625-3.625m1.958-4.708a6.667 6.667 0 1 1-13.333 0 6.667 6.667 0 0 1 13.333 0Z"
+                stroke="#C6C6C6"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
             <span className="hidden pl-2 text-[15px] font-semibold sm:block">
               Qidiruv
             </span>
           </div>
-          <div className="hidden sm:block">
+          <div className="hidden cursor-pointer sm:block">
             <span className="font-semibold">UZ</span>
           </div>
         </div>
