@@ -55,4 +55,18 @@
   .icons-effect {
     @apply flex h-10 w-10 items-center justify-center rounded-full border-2 border-borderColor transition-all duration-300 hover:border-hoverIcon hover:bg-hoverIcon;
   }
+
+  html,
+  body,
+  #root {
+    @apply h-full;
+  }
+
+  #root {
+    @apply flex flex-col;
+  }
+
+  main {
+    @apply grow;
+  }
 }

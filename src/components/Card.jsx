@@ -2,7 +2,7 @@ import { PiRugDuotone } from "react-icons/pi";
 
 function Card({ imgUrl, productName, text }) {
   return (
-    <div className="cursor-pointer p-6 text-center hover:bg-[#f3f3f3]">
+    <div className="cursor-pointer border-b-[2px] border-r-[2px] border-[#C6C6C6] p-6 text-center hover:bg-[#f3f3f3]">
       <img
         className="mb-4 w-[314px]"
         src={imgUrl}

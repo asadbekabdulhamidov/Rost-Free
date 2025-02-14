@@ -163,20 +163,22 @@ function Home() {
           </NavLink>
         </div>
       </section>
-      <section className="flex flex-wrap justify-center gap-[10px] pb-[140px]">
-        {products.map((product) => {
-          return (
-            <Card
-              key={product.id}
-              imgUrl={product.imgUrl}
-              productName={product.productName}
-              text={product.text}
-            />
-          );
-        })}
+      <section className="pb-[140px]">
+        <div className="flex flex-wrap justify-center">
+          {products.map((product) => {
+            return (
+              <Card
+                key={product.id}
+                imgUrl={product.imgUrl}
+                productName={product.productName}
+                text={product.text}
+              />
+            );
+          })}
+        </div>
         <a
           href="#"
-          className="mt-14 flex items-center border-[2px] border-black px-4 py-5"
+          className="mx-auto mt-14 flex w-[219px] items-center justify-between border-[2px] border-black px-4 py-5"
         >
           <span> Barcha Mahsulotlar</span>
           <svg
@@ -194,6 +196,158 @@ function Home() {
             />
           </svg>
         </a>
+      </section>
+      <section className="pb-[200px] md:pb-[140px]">
+        <h2 className="mb-7 text-center text-[40px] font-semibold">
+          Isitish Tizimingiz uchun Professional Xizmatlar
+        </h2>
+        <p className="mx-auto mb-10 max-w-[995px] text-center">
+          Sochiq relslari, gidro kollektor va gidro strelkalar uchun o‘rnatish,
+          sozlash va texnik xizmat ko‘rsatamiz. Tejamkor va qulay isitish tizimi
+          yaratishda bizga ishoning.
+        </p>
+        <div className="relative md:flex md:flex-col lg:flex-row">
+          <div className="relative h-[586px] w-full bg-[#001475] lg:w-[50%]">
+            <img
+              className="absolute top-0 md:bottom-0 md:left-0"
+              src="/images/png/99.png"
+              alt=""
+            />
+            <div className="absolute left-5 top-[100px] flex flex-col gap-8">
+              <span className="text-borderColor">
+                Sochiq relslari o'rnatish va sozlash
+              </span>
+              <h4 className="text-[36px] font-semibold text-white">
+                Gidro kollektorlarni o'rnatish
+              </h4>
+              <span className="text-borderColor">
+                Gidro strelkalarni montaj qilish
+              </span>
+              <span className="text-borderColor">
+                Isitish tizimini loyihalash
+              </span>
+              <span className="text-borderColor">
+                Uskunalarni ta'mirlash va texnik xizmat ko'rsatish
+              </span>
+              <span className="text-borderColor">
+                Energiya tejamkor yechimlar bo'yicha maslahatlar
+              </span>
+            </div>
+            <div className="f-full absolute bottom-[-100px] left-1/2 z-10 w-[280px] -translate-x-1/2 overflow-hidden md:hidden">
+              <img
+                className="object-cover lg:h-[586px]"
+                src="/images/png/img123.png"
+                alt=""
+              />
+            </div>
+          </div>
+          <div className="hidden md:block md:w-full lg:w-[50%]">
+            <img
+              className="w-full md:h-[586px]"
+              src="/images/png/img123.png"
+              alt=""
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="align-elements pb-[100px] lg:pb-[140px]">
+        <div className="mb-[80px] flex flex-col items-center">
+          <h2 className="mb-7 text-center text-[40px] font-semibold">
+            Nima uchun aynan biz?
+          </h2>
+          <p className="max-w-[947px] px-3 text-center text-[16px] leading-[1.5] text-[#898989] md:px-0">
+            Biz sifatli, zamonaviy va ishonchli sochiq relslari bilan sizning
+            qulayligingizni ta’minlaymiz. Mahsulotlarimiz nafaqat funksional,
+            balki interyerga mos dizaynga ham ega. Biz bilan tanlovingiz to‘g‘ri
+            bo‘lishiga ishonch hosil qilasiz!
+          </p>
+        </div>
+
+        <div className="flex flex-col gap-10 lg:flex-row lg:items-center">
+          <div className="flex flex-col gap-10">
+            {" "}
+            <div className="flex items-center gap-6">
+              <img
+                src="/images/icons/ys.svg"
+                alt="yuqori sifatni anglatuvchi icon"
+              />
+              <p className="text-[#898989]">
+                <b className="text-black">Yuqori sifat</b> – Bardoshli va
+                zamonaviy materiallardan ishlab chiqarilgan.
+              </p>
+            </div>
+            <div className="flex items-center gap-6">
+              <img
+                src="/images/icons/zd.svg"
+                alt="zamonaviy design anglatuvchi icon"
+              />
+              <p className="text-[#898989]">
+                <b className="text-black">Zamonaviy dizayn</b> – Har qanday
+                interyerni bezaydigan estetika.
+              </p>
+            </div>
+            <div className="flex items-center gap-6">
+              <img
+                src="/images/icons/et.svg"
+                alt="energiya tejamkorligi anglatuvchi icon"
+              />
+              <p className="text-[#898989]">
+                <b className="text-black">Energiyani tejash</b> – Samarali
+                isitish texnologiyalari bilan jihozlangan.
+              </p>
+            </div>
+          </div>
+          <div className="md:mx-auto">
+            <img src="/images/png/reels.png" alt="sochiq reels" />
+          </div>
+          <div className="flex flex-col gap-10">
+            <div className="flex flex-row-reverse items-center gap-6">
+              <img
+                src="/images/icons/tiyb.svg"
+                alt="tez va ishonchli yetkazib berishni anglatuvchi icon"
+              />
+              <p className="text-right text-[#898989]">
+                <b className="text-black"> Tez va ishonchli yetkazib berish</b>-
+                Qisqa muddatda yetkazib beramiz.
+              </p>
+            </div>
+            <div className="flex flex-row-reverse items-center gap-6">
+              <img
+                src="/images/icons/kqq.svg"
+                alt="kafolatli qollab quvvatlash anglatuvchi icon"
+              />
+              <p className="text-right text-[#898989]">
+                <b className="text-black"> Kafolat va qo‘llab-quvvatlash</b>-
+                Har bir mahsulotimiz kafolat bilan ta’minlanadi.
+              </p>
+            </div>
+            <div className="flex flex-row-reverse items-center gap-6">
+              <img
+                src="/images/icons/miy.svg"
+                alt="mijozlarga individual yondashuv anglatuvchi icon"
+              />
+              <p className="text-right text-[#898989]">
+                <b className="text-black"> Mijozlarga individual yondashuv</b> –
+                Sizning ehtiyojlaringizni inobatga olamiz.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* galery section */}
+      <section className="align-elements">
+        <div className="mb-[80px] flex flex-col items-center">
+          <h2 className="mb-5 text-center text-[40px] font-semibold">
+            Bizning Mahsulotlar Galereyasi
+          </h2>
+          <p className="max-w-[947px] px-3 text-center text-[16px] leading-[1.5] text-[#898989] md:px-0">
+            Sochiq relslari, gidro kollektor va gidro strelkalarimizning
+            zamonaviy dizaynlari va sifatini ko‘ring. Galereyamizdan o‘zingizga
+            mos variantni tanlang va uyingizga qulaylik qo‘shing
+          </p>
+        </div>
       </section>
     </>
   );
