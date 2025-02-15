@@ -2,6 +2,9 @@
 import { NavLink } from "react-router-dom";
 import { SwipperHero, Image, Card } from "../components";
 
+//masonry
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
+
 //uuid
 import { v4 as uuidv4 } from "uuid";
 
@@ -111,6 +114,19 @@ const products = [
     productName: "Mahsulot nomi",
     text: "issiq sochiq relslari",
   },
+];
+
+const gallery = [
+  "/images/png/image.png",
+  "images/png/image-1.png",
+  "images/png/image-2.png",
+  "images/png/image-3.png",
+  "images/png/image-4.png",
+  "/images/png/image.png",
+  "images/png/image-1.png",
+  "images/png/image-2.png",
+  "images/png/image-3.png",
+  "images/png/image-4.png",
 ];
 
 function Home() {
@@ -337,7 +353,7 @@ function Home() {
       </section>
 
       {/* galery section */}
-      <section className="align-elements">
+      <section className="align-elements pb-[140px]">
         <div className="mb-[80px] flex flex-col items-center">
           <h2 className="mb-5 text-center text-[40px] font-semibold">
             Bizning Mahsulotlar Galereyasi
@@ -348,6 +364,166 @@ function Home() {
             mos variantni tanlang va uyingizga qulaylik qo‘shing
           </p>
         </div>
+
+        <div>
+          <div className="mb-14 flex justify-center gap-10">
+            <button className="gallery-btn">Fotogalareya</button>
+            <button className="gallery-btn">Videoglareya</button>
+          </div>
+
+          <div className="align-elements flex items-center gap-10">
+            <button className="hidden md:block">
+              <img src="/images/icons/left-arrow.svg" alt="" />
+            </button>
+            <div className="mx-auto w-full max-w-[1374px]">
+              <ResponsiveMasonry
+                columnsCountBreakPoints={{ 350: 1, 750: 3, 900: 5 }}
+                gutterBreakpoints={{ 350: "12px", 750: "16px", 900: "16px" }}
+              >
+                <Masonry>
+                  {gallery.map((image) => {
+                    return <img src={image} alt="foto galery" />;
+                  })}
+                </Masonry>
+              </ResponsiveMasonry>
+            </div>
+            <button className="hidden md:block">
+              <img
+                className="rotate-180"
+                src="/images/icons/left-arrow.svg"
+                alt=""
+              />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section className="hidden lg:block lg:pb-[140px]">
+        <div className="bg-[url('/images/png/section-bg.png')] bg-cover bg-center bg-no-repeat">
+          <div className="align-elements flex justify-around py-[126px]">
+            <p className="flex flex-col items-center text-white">
+              <span className="text-[64px] font-semibold">5+</span>
+              <span className="text-[32px]">Yillik tajriba</span>
+            </p>
+            <p className="flex flex-col items-center text-white">
+              <span className="text-[64px] font-semibold">120+</span>
+              <span className="text-[32px]">Mijozlarimiz</span>
+            </p>
+            <p className="flex flex-col items-center text-white">
+              <span className="text-[64px] font-semibold">5+</span>
+              <span className="text-[32px]">Mahsulot turlari</span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="align-elements">
+        <div className="flex items-center justify-between">
+          <div className="mb-10">
+            <h2 className="mb-7 text-center text-[40px] font-semibold md:text-left">
+              So‘nggi Yangiliklar va Foydali Maqolalar
+            </h2>
+            <p className="max-w-[673px] text-center font-semibold text-[#595959] md:text-left">
+              Sochiq relslari va isitish tizimlaridagi yangiliklar bilan
+              tanishing. Foydali maslahatlar va yangiliklar bizning sahifamizda
+            </p>
+          </div>
+          <div className="hidden lg:block">
+            <button className="mr-6">
+              <img src="/images/icons/left-ar2.svg" alt="" />
+            </button>
+            <button>
+              <img src="/images/icons/rigth-ar2.svg" alt="" />
+            </button>
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-6 md:mx-auto lg:flex-row lg:justify-between">
+          {/* //card1 */}
+          <div className="relative h-[408px] border-2 bg-[url('/images/png/image.png')] lg:w-[597px] xl:max-w-[597px]">
+            <div className="p-[10px absolute left-[55px] top-0 w-[68px] bg-hoverIcon text-center text-white">
+              <span className="block leading-5">8</span>
+              <span className="leading-5">Yanvar</span>
+            </div>
+
+            <div className="hover-card">
+              <h2 className="mb-3 text-center text-[20px] font-bold leading-[130%] md:text-left">
+                Yangi Energiya Tejamkor Suv Isitiladigan Sochiq Relsi
+              </h2>
+              <p className="hidden text-[15px] leading-[130%] md:block">
+                Yangi modelimiz yordamida isitish tizimingizni yanada samarali
+                va energiya tejamkor qilish mumkin. Yangi sochiq relsi yuqori
+                sifatli materiallardan
+              </p>
+            </div>
+          </div>
+          {/* //card2 */}
+          <div className="relative h-[408px] border-2 bg-[url('/images/png/image7.png')] lg:w-[597px] xl:max-w-[597px]">
+            <div className="p-[10px absolute left-[55px] top-0 w-[68px] bg-hoverIcon text-center text-white">
+              <span className="block leading-5">8</span>
+              <span className="leading-5">Yanvar</span>
+            </div>
+
+            <div className="hover-card">
+              <h2 className="mb-3 text-center text-[20px] font-bold leading-[130%] md:text-left">
+                Yangi Energiya Tejamkor Suv Isitiladigan Sochiq Relsi
+              </h2>
+              <p className="hidden text-[15px] leading-[130%] md:block">
+                Yangi modelimiz yordamida isitish tizimingizni yanada samarali
+                va energiya tejamkor qilish mumkin. Yangi sochiq relsi yuqori
+                sifatli materiallardan
+              </p>
+            </div>
+          </div>
+          {/* //card3 */}
+          <div className="relative h-[408px] border-2 bg-[url('/images/png/image-4.png')] lg:w-[597px] xl:max-w-[597px]">
+            <div className="p-[10px absolute left-[55px] top-0 w-[68px] bg-hoverIcon text-center text-white">
+              <span className="block leading-5">8</span>
+              <span className="leading-5">Yanvar</span>
+            </div>
+
+            <div className="hover-card">
+              <h2 className="mb-3 text-center text-[20px] font-bold leading-[130%] md:text-left">
+                Yangi Energiya Tejamkor Suv Isitiladigan Sochiq Relsi
+              </h2>
+              <p className="hidden text-[15px] leading-[130%] md:block">
+                Yangi modelimiz yordamida isitish tizimingizni yanada samarali
+                va energiya tejamkor qilish mumkin. Yangi sochiq relsi yuqori
+                sifatli materiallardan
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-10 flex justify-center lg:hidden">
+          <button className="mr-6">
+            <img src="/images/icons/left-ar2.svg" alt="" />
+          </button>
+          <button>
+            <img src="/images/icons/rigth-ar2.svg" alt="" />
+          </button>
+        </div>
+
+        <a
+          href="#"
+          className="mx-auto mt-14 flex w-[219px] items-center justify-between border-[2px] border-black px-4 py-5"
+        >
+          <span> Barcha Mahsulotlar</span>
+          <svg
+            width="24"
+            height="24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M7 17 17 7m0 0H7m10 0v10"
+              stroke="#121212"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </a>
       </section>
     </>
   );

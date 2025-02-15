@@ -56,6 +56,14 @@
     @apply flex h-10 w-10 items-center justify-center rounded-full border-2 border-borderColor transition-all duration-300 hover:border-hoverIcon hover:bg-hoverIcon;
   }
 
+  .gallery-btn {
+    @apply border-b-[2px] border-b-transparent pb-2 font-semibold transition-all duration-300 hover:border-b-hoverIcon hover:text-hoverIcon;
+  }
+
+  .hover-card {
+    @apply absolute bottom-0 bg-black/55 pb-[43px] pl-5 pr-[50px] pt-[30px] text-white backdrop-blur-[12px] transition-all duration-300 hover:bg-hoverIcon;
+  }
+
   html,
   body,
   #root {
