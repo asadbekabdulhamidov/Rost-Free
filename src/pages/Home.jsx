@@ -1,6 +1,6 @@
 //components
 import { NavLink } from "react-router-dom";
-import { SwipperHero, Image, Card } from "../components";
+import { SwipperHero, Image, Card, Input } from "../components";
 
 //masonry
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
@@ -206,9 +206,9 @@ function Home() {
             <path
               d="M7 17 17 7m0 0H7m10 0v10"
               stroke="#121212"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
         </a>
@@ -382,7 +382,7 @@ function Home() {
               >
                 <Masonry>
                   {gallery.map((image) => {
-                    return <img src={image} alt="foto galery" />;
+                    return <img key={uuidv4()} src={image} alt="foto galery" />;
                   })}
                 </Masonry>
               </ResponsiveMasonry>
@@ -417,7 +417,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="align-elements">
+      <section className="align-elements pb-[100px] md:pb-[120px] lg:pb-[140px]">
         <div className="flex items-center justify-between">
           <div className="mb-10">
             <h2 className="mb-7 text-center text-[40px] font-semibold md:text-left">
@@ -518,12 +518,146 @@ function Home() {
             <path
               d="M7 17 17 7m0 0H7m10 0v10"
               stroke="#121212"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
         </a>
+      </section>
+
+      {/* sectio contact */}
+      <section className="align-elements mb-[100px] lg:hidden">
+        <div className="mb-10">
+          <h2 className="mb-5 text-[32px] font-semibold leading-[100%] md:text-[40px] md:leading-[120%]">
+            Biz bilan bog‘laning
+          </h2>
+          <p>
+            Savollaringiz bo‘lsa, biz bilan bog‘laning. Tez orada javob beramiz
+            va yordam ko‘rsatamiz
+          </p>
+        </div>
+
+        <div className="mb-10 flex flex-col gap-10">
+          <div>
+            <p className="mb-2 font-semibold text-[#8f8f8f]">Manzil</p>
+            <strong>
+              Farg’ona viloyati, Farg’ona shahar Alisher Navoiy ko’chasi 15_uy
+            </strong>
+          </div>
+
+          <div>
+            <p className="mb-2 font-semibold text-[#8f8f8f]">Telefon</p>
+            <a className="block" href="tel:+998 90 000 00 00">
+              <strong>+998 90 000 00 00</strong>
+            </a>
+            <a className="" href="tel:+998 90 000 00 00">
+              <strong>+998 90 000 00 00</strong>
+            </a>
+          </div>
+
+          <div>
+            <p className="mb-2 font-semibold text-[#8f8f8f]">Email</p>
+            <a href="https://info@rostfri.uz">
+              <strong>info@rostfri.uz</strong>
+            </a>
+          </div>
+        </div>
+
+        <div className="bg-[#f3f3f3] px-5 py-10">
+          <div className="mb-8 text-center">
+            <h2 className="mb-5 text-[32px] font-semibold leading-[100%] md:text-[40px] md:leading-[120%]">
+              Bepul konsultatsiya oling!
+            </h2>
+            <p className="mb-2 font-semibold text-[#8f8f8f]">
+              Ma’lumotlaringizni qoldiring va biz sizga aloqaga chiqamiz!
+            </p>
+          </div>
+
+          <form className="flex flex-col">
+            <label className="mb-8 flex flex-col gap-[10px]">
+              <b>Ism</b>
+              <Input type="text" placeholder="Ismingizni yozing" />
+            </label>
+            <label className="mb-8 flex flex-col gap-[10px]">
+              <b>Telefon raqam</b>
+              <Input type="tel" placeholder="+998 00 000 00 00" />
+            </label>
+
+            <button className="w-full border-2 bg-hoverIcon py-5 font-semibold text-white">
+              Yuborish
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <section className="relative hidden gap-[60px] pb-[240px] lg:flex">
+        <div className="h-[559px] w-[948px] flex-shrink-0 bg-[url('/images/png/ambient.png')] bg-cover bg-center bg-no-repeat"></div>
+
+        <div>
+          <div className="mb-10">
+            <h2 className="mb-5 font-semibold leading-[100%] md:text-[40px]">
+              Biz bilan bog‘laning
+            </h2>
+            <p>
+              Savollaringiz bo‘lsa, biz bilan bog‘laning. Tez orada javob
+              beramiz va yordam ko‘rsatamiz
+            </p>
+          </div>
+
+          <div className="absolute right-1 flex gap-[60px] bg-white p-6 2xl:right-[30px]">
+            <div className="w-[573px] bg-[#f3f3f3] p-[60px]">
+              <div className="mb-8">
+                <h2 className="mb-5 whitespace-nowrap font-semibold leading-[100%] md:text-[28px]">
+                  Bepul konsultatsiya oling!
+                </h2>
+                <p className="mb-2 font-semibold text-[#8f8f8f]">
+                  Ma’lumotlaringizni qoldiring va biz sizga aloqaga chiqamiz!
+                </p>
+              </div>
+              <form className="flex flex-col">
+                <label className="mb-8 flex flex-col gap-[10px]">
+                  <b>Ism</b>
+                  <Input type="text" placeholder="Ismingizni yozing" />
+                </label>
+                <label className="mb-8 flex flex-col gap-[10px]">
+                  <b>Telefon raqam</b>
+                  <Input type="tel" placeholder="+998 00 000 00 00" />
+                </label>
+
+                <button className="w-full border-2 bg-hoverIcon py-5 font-semibold text-white">
+                  Yuborish
+                </button>
+              </form>
+            </div>
+            <div className="flex flex-col gap-[51px]">
+              <div>
+                <p className="mb-2 font-semibold text-[#8f8f8f]">Manzil</p>
+                <strong>
+                  Farg’ona viloyati, Farg’ona shahar Alisher Navoiy ko’chasi
+                  15_uy
+                </strong>
+              </div>
+
+              <div>
+                <p className="mb-2 font-semibold text-[#8f8f8f]">Telefon</p>
+                <a className="block" href="tel:+998 90 000 00 00">
+                  <strong>+998 90 000 00 00</strong>
+                </a>
+                <a className="" href="tel:+998 90 000 00 00">
+                  <strong>+998 90 000 00 00</strong>
+                </a>
+              </div>
+
+              <div>
+                <p className="mb-2 font-semibold text-[#8f8f8f]">Email</p>
+                <a href="https://info@rostfri.uz">
+                  <strong>info@rostfri.uz</strong>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </>
   );

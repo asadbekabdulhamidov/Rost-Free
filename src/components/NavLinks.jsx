@@ -1,7 +1,7 @@
 // react router dom
 import { NavLink } from "react-router-dom";
 
-const navLinks = [
+export const navLinks = [
   {
     path: "/",
     text: "Biz haqimizda",

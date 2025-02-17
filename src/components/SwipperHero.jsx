@@ -78,6 +78,16 @@ const SwiperComponent = () => {
           />
         </SwiperSlide>
       </Swiper>
+
+      {/* Swiper pagination nuqtalari */}
+      <style jsx global>{`
+        .swiper-pagination-bullet {
+          background-color: red !important; /* Nuqtalarni qizil qilish */
+        }
+        .swiper-pagination-bullet-active {
+          background-color: darkred !important; /* Faol nuqtani yanada qoraytirish */
+        }
+      `}</style>
     </div>
   );
 };

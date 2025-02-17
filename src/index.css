@@ -64,6 +64,15 @@
     @apply absolute bottom-0 bg-black/55 pb-[43px] pl-5 pr-[50px] pt-[30px] text-white backdrop-blur-[12px] transition-all duration-300 hover:bg-hoverIcon;
   }
 
+  /* Swiper pagination nuqtalarini qizil qilish */
+  .swiper-pagination-bullet {
+    background-color: red !important;
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: darkred !important;
+  }
+
   html,
   body,
   #root {
