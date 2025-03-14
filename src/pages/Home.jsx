@@ -1,142 +1,72 @@
 //components
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { SwipperHero, Image, Card, Input } from "../components";
 
 //masonry
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+import useAxios from "../hooks/useAxios";
 
 //uuid
 import { v4 as uuidv4 } from "uuid";
 
-const logos = [
-  "/images/svg/akay.svg",
-  "/images/svg/golden.svg",
-  "/images/svg/Muradbuilding.svg",
-  "/images/svg/olmazor.svg",
-  "/images/svg/realhouse.svg",
-  "/images/svg/tc.svg",
-];
-
-const products = [
-  {
-    id: uuidv4(),
-    imgUrl: "/images/png/image1.png",
-    productName: "Mahsulot nomi",
-    text: "issiq sochiq relslari",
-  },
-  {
-    id: uuidv4(),
-    imgUrl: "/images/png/image2.png",
-    productName: "Mahsulot nomi",
-    text: "issiq sochiq relslari",
-  },
-  {
-    id: uuidv4(),
-    imgUrl: "/images/png/image3.png",
-    productName: "Mahsulot nomi",
-    text: "issiq sochiq relslari",
-  },
-  {
-    id: uuidv4(),
-    imgUrl: "/images/png/image4.png",
-    productName: "Mahsulot nomi",
-    text: "issiq sochiq relslari",
-  },
-  {
-    id: uuidv4(),
-    imgUrl: "/images/png/image5.png",
-    productName: "Mahsulot nomi",
-    text: "issiq sochiq relslari",
-  },
-  {
-    id: uuidv4(),
-    imgUrl: "/images/png/image6.png",
-    productName: "Mahsulot nomi",
-    text: "issiq sochiq relslari",
-  },
-  {
-    id: uuidv4(),
-    imgUrl: "/images/png/image7.png",
-    productName: "Mahsulot nomi",
-    text: "issiq sochiq relslari",
-  },
-  {
-    id: uuidv4(),
-    imgUrl: "/images/png/image8.png",
-    productName: "Mahsulot nomi",
-    text: "issiq sochiq relslari",
-  },
-  {
-    id: uuidv4(),
-    imgUrl: "/images/png/image7.png",
-    productName: "Mahsulot nomi",
-    text: "issiq sochiq relslari",
-  },
-  {
-    id: uuidv4(),
-    imgUrl: "/images/png/image8.png",
-    productName: "Mahsulot nomi",
-    text: "issiq sochiq relslari",
-  },
-  {
-    id: uuidv4(),
-    imgUrl: "/images/png/image7.png",
-    productName: "Mahsulot nomi",
-    text: "issiq sochiq relslari",
-  },
-  {
-    id: uuidv4(),
-    imgUrl: "/images/png/image8.png",
-    productName: "Mahsulot nomi",
-    text: "issiq sochiq relslari",
-  },
-  {
-    id: uuidv4(),
-    imgUrl: "/images/png/image7.png",
-    productName: "Mahsulot nomi",
-    text: "issiq sochiq relslari",
-  },
-  {
-    id: uuidv4(),
-    imgUrl: "/images/png/image8.png",
-    productName: "Mahsulot nomi",
-    text: "issiq sochiq relslari",
-  },
-  {
-    id: uuidv4(),
-    imgUrl: "/images/png/image1.png",
-    productName: "Mahsulot nomi",
-    text: "issiq sochiq relslari",
-  },
-  {
-    id: uuidv4(),
-    imgUrl: "/images/png/image1.png",
-    productName: "Mahsulot nomi",
-    text: "issiq sochiq relslari",
-  },
-];
-
-const gallery = [
-  "/images/png/image.png",
-  "images/png/image-1.png",
-  "images/png/image-2.png",
-  "images/png/image-3.png",
-  "images/png/image-4.png",
-  "/images/png/image.png",
-  "images/png/image-1.png",
-  "images/png/image-2.png",
-  "images/png/image-3.png",
-  "images/png/image-4.png",
-];
-
 function Home() {
+  const {
+    data: contactData,
+    error: errorContact,
+    loading: errorLoading,
+  } = useAxios(`${BASE_URL}/footers`);
+  let phones, address, email, phone1, phone2;
+  if (contactData && contactData.length > 0) {
+    ({
+      phones: [phone1, phone2],
+      email,
+      address,
+    } = contactData[0]);
+  }
+
+  const {
+    data: productsData,
+    error: productsError,
+    loading: productsLoading,
+  } = useAxios(`${BASE_URL}/products/paginate?page=1&limit=10`);
+  // console.log(productsData.rows);
+
+  const {
+    data: partnersData,
+    loading: loadingPartners,
+    error: errorsPartners,
+  } = useAxios(`${BASE_URL}/partners`);
+
+  const {
+    data: galleryData,
+    loading: loadingGallery,
+    error: errorsGallery,
+  } = useAxios(`${BASE_URL}/photo-medias`);
+
+  const {
+    data: chooseData,
+    error: chooseError,
+    loading: chooseLoading,
+  } = useAxios(`${BASE_URL}/why-choose-uses`);
+
+  let benefits, chooseTitle, chooseDesc;
+  let benefist1, benefist2, benefist3, benefist4, benefist5, benefist6;
+
+  if (chooseData && chooseData.length > 0) {
+    ({ benefits, title: chooseTitle, desc: chooseDesc } = chooseData[0]);
+
+    [benefist1, benefist2, benefist3, benefist4, benefist5, benefist6] =
+      benefits;
+  }
+
   return (
     <>
       <section>
         <SwipperHero />
       </section>
       <section className="py-20 md:py-28 lg:py-36">
-        <Image logos={logos} />
+        <Image logos={partnersData} />
       </section>
       <section>
         <div className="align-elements mb-14 text-center">
@@ -181,16 +111,10 @@ function Home() {
       </section>
       <section className="pb-[140px]">
         <div className="flex flex-wrap justify-center">
-          {products.map((product) => {
-            return (
-              <Card
-                key={product.id}
-                imgUrl={product.imgUrl}
-                productName={product.productName}
-                text={product.text}
-              />
-            );
-          })}
+          {productsData &&
+            productsData?.rows.map((product) => {
+              return <Card key={product.id} product={product} />;
+            })}
         </div>
         <a
           href="#"
@@ -270,13 +194,10 @@ function Home() {
       <section className="align-elements pb-[100px] lg:pb-[140px]">
         <div className="mb-[80px] flex flex-col items-center">
           <h2 className="mb-7 text-center text-[40px] font-semibold">
-            Nima uchun aynan biz?
+            {chooseTitle}
           </h2>
           <p className="max-w-[947px] px-3 text-center text-[16px] leading-[1.5] text-[#898989] md:px-0">
-            Biz sifatli, zamonaviy va ishonchli sochiq relslari bilan sizning
-            qulayligingizni ta’minlaymiz. Mahsulotlarimiz nafaqat funksional,
-            balki interyerga mos dizaynga ham ega. Biz bilan tanlovingiz to‘g‘ri
-            bo‘lishiga ishonch hosil qilasiz!
+            {chooseDesc}
           </p>
         </div>
 
@@ -285,32 +206,35 @@ function Home() {
             {" "}
             <div className="flex items-center gap-6">
               <img
-                src="/images/icons/ys.svg"
+                src={benefist1?.photo}
+                crossOrigin="anonymous"
                 alt="yuqori sifatni anglatuvchi icon"
               />
               <p className="text-[#898989]">
-                <b className="text-black">Yuqori sifat</b> – Bardoshli va
-                zamonaviy materiallardan ishlab chiqarilgan.
+                <b className="text-black">{benefist1?.title}</b> -
+                {benefist1?.desc}
               </p>
             </div>
             <div className="flex items-center gap-6">
               <img
-                src="/images/icons/zd.svg"
+                crossOrigin="anonymous"
+                src={benefist2?.photo}
                 alt="zamonaviy design anglatuvchi icon"
               />
               <p className="text-[#898989]">
-                <b className="text-black">Zamonaviy dizayn</b> – Har qanday
-                interyerni bezaydigan estetika.
+                <b className="text-black">{benefist2?.title}</b> -
+                {benefist2?.desc}
               </p>
             </div>
             <div className="flex items-center gap-6">
               <img
-                src="/images/icons/et.svg"
+                crossOrigin="anonymous"
+                src={benefist3?.photo}
                 alt="energiya tejamkorligi anglatuvchi icon"
               />
               <p className="text-[#898989]">
-                <b className="text-black">Energiyani tejash</b> – Samarali
-                isitish texnologiyalari bilan jihozlangan.
+                <b className="text-black">{benefist3?.title}</b> -
+                {benefist3?.desc}
               </p>
             </div>
           </div>
@@ -320,32 +244,35 @@ function Home() {
           <div className="flex flex-col gap-10">
             <div className="flex flex-row-reverse items-center gap-6">
               <img
-                src="/images/icons/tiyb.svg"
+                crossOrigin="anonymous"
+                src={benefist4?.photo}
                 alt="tez va ishonchli yetkazib berishni anglatuvchi icon"
               />
               <p className="text-right text-[#898989]">
-                <b className="text-black"> Tez va ishonchli yetkazib berish</b>-
-                Qisqa muddatda yetkazib beramiz.
+                <b className="text-black"> {benefist4?.title}</b>-{" "}
+                {benefist4?.desc}
               </p>
             </div>
             <div className="flex flex-row-reverse items-center gap-6">
               <img
-                src="/images/icons/kqq.svg"
+                crossOrigin="anonymous"
+                src={benefist5?.photo}
                 alt="kafolatli qollab quvvatlash anglatuvchi icon"
               />
               <p className="text-right text-[#898989]">
-                <b className="text-black"> Kafolat va qo‘llab-quvvatlash</b>-
-                Har bir mahsulotimiz kafolat bilan ta’minlanadi.
+                <b className="text-black"> {benefist5?.title}</b>-{" "}
+                {benefist5?.desc}
               </p>
             </div>
             <div className="flex flex-row-reverse items-center gap-6">
               <img
-                src="/images/icons/miy.svg"
+                crossOrigin="anonymous"
+                src={benefist6?.photo}
                 alt="mijozlarga individual yondashuv anglatuvchi icon"
               />
               <p className="text-right text-[#898989]">
-                <b className="text-black"> Mijozlarga individual yondashuv</b> –
-                Sizning ehtiyojlaringizni inobatga olamiz.
+                <b className="text-black"> {benefist6?.title}</b> –{" "}
+                {benefist6?.desc}
               </p>
             </div>
           </div>
@@ -377,13 +304,21 @@ function Home() {
             </button>
             <div className="mx-auto w-full max-w-[1374px]">
               <ResponsiveMasonry
-                columnsCountBreakPoints={{ 350: 1, 750: 3, 900: 5 }}
+                columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 4 }}
                 gutterBreakpoints={{ 350: "12px", 750: "16px", 900: "16px" }}
               >
                 <Masonry>
-                  {gallery.map((image) => {
-                    return <img key={uuidv4()} src={image} alt="foto galery" />;
-                  })}
+                  {galleryData &&
+                    galleryData.map((image) => {
+                      return (
+                        <img
+                          key={image.id}
+                          crossOrigin="anonymous"
+                          src={image.photo}
+                          alt="foto galery"
+                        />
+                      );
+                    })}
                 </Masonry>
               </ResponsiveMasonry>
             </div>
@@ -541,26 +476,24 @@ function Home() {
         <div className="mb-10 flex flex-col gap-10">
           <div>
             <p className="mb-2 font-semibold text-[#8f8f8f]">Manzil</p>
-            <strong>
-              Farg’ona viloyati, Farg’ona shahar Alisher Navoiy ko’chasi 15_uy
-            </strong>
+            <strong>{address}</strong>
           </div>
 
           <div>
             <p className="mb-2 font-semibold text-[#8f8f8f]">Telefon</p>
-            <a className="block" href="tel:+998 90 000 00 00">
-              <strong>+998 90 000 00 00</strong>
+            <a className="block" to={`tel: +998 ${phone1}`}>
+              <strong>+998 {phone1}</strong>
             </a>
-            <a className="" href="tel:+998 90 000 00 00">
-              <strong>+998 90 000 00 00</strong>
+            <a className="" to={`tel: +998 ${phone2}`}>
+              <strong>+998 {phone2}</strong>
             </a>
           </div>
 
           <div>
             <p className="mb-2 font-semibold text-[#8f8f8f]">Email</p>
-            <a href="https://info@rostfri.uz">
-              <strong>info@rostfri.uz</strong>
-            </a>
+            <Link to={`mailto:${email}`}>
+              <strong>{email}</strong>
+            </Link>
           </div>
         </div>
 
@@ -633,27 +566,24 @@ function Home() {
             <div className="flex flex-col gap-[51px]">
               <div>
                 <p className="mb-2 font-semibold text-[#8f8f8f]">Manzil</p>
-                <strong>
-                  Farg’ona viloyati, Farg’ona shahar Alisher Navoiy ko’chasi
-                  15_uy
-                </strong>
+                <strong>{address}</strong>
               </div>
 
               <div>
                 <p className="mb-2 font-semibold text-[#8f8f8f]">Telefon</p>
-                <a className="block" href="tel:+998 90 000 00 00">
+                <Link to={`tel: +998 ${phone1}`} className="block">
                   <strong>+998 90 000 00 00</strong>
-                </a>
-                <a className="" href="tel:+998 90 000 00 00">
-                  <strong>+998 90 000 00 00</strong>
-                </a>
+                </Link>
+                <Link className="" to={`tel: +998 ${phone2}`}>
+                  <strong>+998 {phone2}</strong>
+                </Link>
               </div>
 
               <div>
                 <p className="mb-2 font-semibold text-[#8f8f8f]">Email</p>
-                <a href="https://info@rostfri.uz">
-                  <strong>info@rostfri.uz</strong>
-                </a>
+                <Link to={`mailto:${email}`}>
+                  <strong>{email}</strong>
+                </Link>
               </div>
             </div>
           </div>

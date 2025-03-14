@@ -1,13 +1,25 @@
 // react icons
 import { HiMiniBars3CenterLeft } from "react-icons/hi2";
-import { FaTelegram, FaSearch } from "react-icons/fa";
-import { RiTelegram2Fill } from "react-icons/ri";
-import { IoCallOutline } from "react-icons/io5";
+
+//hooks
+import useAxios from "../hooks/useAxios";
 
 //compoenents
 import NavLinks from "./NavLinks";
+import { Link } from "react-router-dom";
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 function Navbar() {
+  const { data: navbarData, error, loading } = useAxios(`${BASE_URL}/headers`);
+  let phone, telegram, instagram, facebook, youtube;
+
+  if (navbarData && navbarData.length > 0) {
+    ({ phone, telegram, instagram, facebook, youtube } = navbarData[0]);
+  }
+
+  if (loading) return <h1 className="text-3xl">Loading...</h1>;
+  if (error) return <p>Error: {error.message}</p>;
+
   return (
     <header>
       <nav className="align-elements flex items-center justify-between py-5">
@@ -24,13 +36,14 @@ function Navbar() {
           <ul className="hidden gap-3 lg:flex lg:items-center">
             <NavLinks />
           </ul>
-          <a className="lg:pl-15 px-5 md:pl-20" href="/">
+          <a className="lg:pl-15 px-5 md:pl-20 2xl:pl-60" href="/">
             <img src="/images/svg/site-logo.svg" alt="rost free logo" />
           </a>
         </div>
         <div className="items-center sm:flex">
           <div className="hidden items-center gap-3 xl:flex">
-            <span>
+            {/* telegram */}
+            <Link to={telegram}>
               <svg
                 className="group h-7 w-7 transition"
                 width="28"
@@ -60,8 +73,9 @@ function Navbar() {
                   className="fill-[#121212] transition group-hover:fill-white"
                 />
               </svg>
-            </span>
-            <span>
+            </Link>
+            {/* instagramm */}
+            <Link to={instagram}>
               <svg
                 width="28"
                 height="28"
@@ -89,8 +103,9 @@ function Navbar() {
                   className="fill-[#121212] transition group-hover:fill-white"
                 />
               </svg>
-            </span>
-            <span>
+            </Link>
+            {/*facebook  */}
+            <Link to={facebook}>
               <svg
                 width="28"
                 height="28"
@@ -120,8 +135,9 @@ function Navbar() {
                   className="fill-[#121212] transition group-hover:fill-white"
                 />
               </svg>
-            </span>
-            <span>
+            </Link>
+            {/* youtube */}
+            <Link to={youtube}>
               <svg
                 width="28"
                 height="28"
@@ -153,10 +169,10 @@ function Navbar() {
                   className="fill-[#121212] transition group-hover:fill-white"
                 />
               </svg>
-            </span>
+            </Link>
           </div>
           <div className="ml-5 hidden items-center lg:flex">
-            <span>
+            <Link to={phone}>
               <svg
                 width="24"
                 height="24"
@@ -170,8 +186,8 @@ function Navbar() {
                   strokeMiterlimit="10"
                 />
               </svg>
-            </span>
-            <a href="tel:+998 90 277 43 52">+998 90 277 43 52</a>
+            </Link>
+            <Link to={phone}>+998 90 277 43 52</Link>
           </div>
           <div className="cursor-pointer items-center px-5 sm:flex">
             <svg

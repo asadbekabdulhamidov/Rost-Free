@@ -11,7 +11,20 @@ import {
   MdOutlineArrowForwardIos,
 } from "react-icons/md";
 
+import useAxios from "../hooks/useAxios";
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
 const SwiperComponent = () => {
+  const { data: sliderData, error, loading } = useAxios(`${BASE_URL}/sliders`);
+  // console.log(sliderData[0]);
+
+  let photo;
+
+  if (sliderData && sliderData.length > 0) {
+    ({ photo } = sliderData[0]);
+    // console.log(photo);
+  }
+
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
@@ -58,22 +71,18 @@ const SwiperComponent = () => {
       >
         <SwiperSlide>
           <img
-            src="/images/png/hero.png"
+            src={photo}
+            crossOrigin="anonymous"
             alt="Slide 1"
             className="h-60 w-full rounded-lg object-cover sm:h-72 md:h-80 lg:h-96"
           />
         </SwiperSlide>
+
         <SwiperSlide>
           <img
-            src="/images/png/hero.png"
-            alt="Slide 1"
-            className="h-60 w-full rounded-lg object-cover sm:h-72 md:h-80 lg:h-96"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            src="/images/png/hero.png"
-            alt="Slide 1"
+            src={photo}
+            crossOrigin="anonymous"
+            alt="Slide 2"
             className="h-60 w-full rounded-lg object-cover sm:h-72 md:h-80 lg:h-96"
           />
         </SwiperSlide>

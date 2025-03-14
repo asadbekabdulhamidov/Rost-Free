@@ -2,6 +2,9 @@
 import { v4 as uuidv4 } from "uuid";
 
 import { Link } from "react-router-dom";
+//hooks
+import useAxios from "../hooks/useAxios";
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const footerLink = [
   {
@@ -31,6 +34,37 @@ const footerLink = [
 ];
 
 function Footer() {
+  // footer api
+  const {
+    data: footerData,
+    error: errorFooter,
+    loading: loadingFooter,
+  } = useAxios(`${BASE_URL}/footers`);
+
+  // navbar api
+  const {
+    data: navbarData,
+    error: errorNavbar,
+    loading: loadingNavbar,
+  } = useAxios(`${BASE_URL}/headers`);
+
+  let telegram, instagram, facebook, youtube;
+  let phones, address, email, photo, phone1, phone2;
+
+  if (footerData && footerData.length > 0) {
+    ({
+      phones: [phone1, phone2],
+      email,
+      address,
+      photo,
+    } = footerData[0]);
+    // console.log(phones, email, address, photo);
+  }
+
+  if (navbarData && navbarData.length > 0) {
+    ({ telegram, instagram, facebook, youtube } = navbarData[0]);
+    // console.log(telegram, instagram, facebook, youtube);
+  }
   return (
     <footer className="bg-[#181818] pb-[21px] pt-[51px]">
       <div className="align-elements">
@@ -39,6 +73,10 @@ function Footer() {
             <a className="mb-[40px]" href="/">
               <img src="/images/svg/footer-logo.svg" alt="" />
             </a>
+
+            {/* <a href="/" className="lg:mb-[40px]">
+              <img src={photo} alt="" />
+            </a> */}
 
             <div className="text-center lg:text-left">
               <strong className="mb-[14px] block font-semibold text-white">
@@ -74,17 +112,17 @@ function Footer() {
                 Aloqa
               </strong>
               <p className="mb-[14px] text-white opacity-50">
-                <a href="#" className="block">
-                  Telefon +99890 000 00 00
-                </a>
-                <a href="#" className="ml-[50px] block">
-                  +99890 000 00 00
-                </a>
+                <Link to={`tel:+998 ${phone1}`} className="block">
+                  Telefon +998 {phone1}
+                </Link>
+                <Link to={`tel: +998 ${phone2}`} className="ml-[50px] block">
+                  +998 {phone2}
+                </Link>
               </p>
 
-              <a className="text-white opacity-50" href="#">
-                Email: info@rostfri.uz
-              </a>
+              <Link className="text-white opacity-50" to={`mailto:${email}`}>
+                Email: {email}
+              </Link>
             </div>
           </div>
 
@@ -93,7 +131,8 @@ function Footer() {
               Ijtimoiy tarmoqlar{" "}
             </strong>
             <div className="mt-6 flex justify-center gap-3">
-              <a href="#">
+              {/* telegram */}
+              <Link to={telegram}>
                 <svg
                   className="hover:fill-hoverIcon"
                   width="28"
@@ -121,8 +160,9 @@ function Footer() {
                     fill="#fff"
                   />
                 </svg>
-              </a>
-              <a href="#">
+              </Link>
+              {/* instagram */}
+              <Link to={instagram}>
                 <svg
                   className="hover:fill-hoverIcon"
                   width="28"
@@ -147,8 +187,9 @@ function Footer() {
                     fill="#fff"
                   />
                 </svg>
-              </a>
-              <a href="#">
+              </Link>
+              {/* facebook */}
+              <Link to={facebook}>
                 <svg
                   className="hover:fill-hoverIcon"
                   width="28"
@@ -176,8 +217,9 @@ function Footer() {
                     fill="#fff"
                   />
                 </svg>
-              </a>
-              <a href="#">
+              </Link>
+              {/* youtube */}
+              <Link to={youtube}>
                 <svg
                   className="hover:fill-hoverIcon"
                   width="28"
@@ -207,7 +249,7 @@ function Footer() {
                     fill="#fff"
                   />
                 </svg>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
